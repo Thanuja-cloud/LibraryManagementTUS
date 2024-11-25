@@ -5,16 +5,9 @@ import tus.library.Interfaces.Transaction;
 import java.time.LocalDate;
 import java.util.List;
 
-
-public non-sealed class Professor extends User implements Transaction {
-    public Professor(String uName, String email, int userId, List<Book> booksBorrowed, boolean isStudent) throws Exception {
-        super(uName, email, "professor", userId, booksBorrowed, false);
-    }
-
-    public Professor(){}
-    @Override
-    public String donateToLibrary(){
-        return "Professors Union " + "200 Euros";
+public non-sealed class OtherStaff extends User implements Transaction {
+    public OtherStaff(String uName, String email, int userId, List<Book> booksBorrowed, boolean isStudent) throws Exception {
+        super(uName, email, "otherstaff", userId, booksBorrowed, false);
     }
 
     @Override

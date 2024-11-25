@@ -16,7 +16,24 @@ public class Book implements Payment {
     private String bookDepartment;
     private boolean isAvailable;
     private LocalDate borrowDate;
+
+    public void setBorrowDate(LocalDate borrowDate) {
+        this.borrowDate = borrowDate;
+    }
+
+    public void setReturnDate(LocalDate returnDate) {
+        this.returnDate = returnDate;
+    }
+
     private LocalDate returnDate;
+
+    public LocalDate getBorrowDate() {
+        return borrowDate;
+    }
+
+    public LocalDate getReturnDate() {
+        return returnDate;
+    }
 
     public Book(String bookName, String author, int bookId, String bookDepartment, boolean isAvailable) {
         this.bookName = bookName;
@@ -25,9 +42,6 @@ public class Book implements Payment {
         this.bookDepartment = bookDepartment;
         this.isAvailable = isAvailable;
     }
-
-
-
     public String getAuthor() {
         return author;
     }
@@ -72,6 +86,21 @@ public class Book implements Payment {
     @Override
     public float finePayment(User user) {
         long daysBetween = ChronoUnit.DAYS.between(returnDate, borrowDate);
-        return (daysBetween - user.getMaxTime()) * user.getFineAmount();
+        float fineAmount = (daysBetween - user.getMaxTime()) * user.getFineAmount();
+        TransactionRecord transaction = new TransactionRecord(user.getUserId(), fineAmount, LocalDate.now());
+        return fineAmount;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "bookName='" + bookName + '\'' +
+                ", author='" + author + '\'' +
+                ", bookId=" + bookId +
+                ", bookDepartment='" + bookDepartment + '\'' +
+                ", isAvailable=" + isAvailable +
+                ", borrowDate=" + borrowDate +
+                ", returnDate=" + returnDate +
+                '}';
     }
 }
