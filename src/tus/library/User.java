@@ -133,6 +133,7 @@ public sealed class User permits Student, Professor, OtherStaff {
         return "";
     }
 
+    // Pattern Matching
     public static boolean isValidEmail(String email) {
         Pattern pattern = Pattern.compile(EMAIL_REGEX);
         Matcher matcher = pattern.matcher(email);

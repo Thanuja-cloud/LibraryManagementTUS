@@ -21,12 +21,13 @@ public class Main {
        addBooks(b1, b2, b3);
        printAllAvailableBooks();
 
+       String msg = "Most Popular Books Are: "; // Effectively final
        // Immutable Class
         MostPopularBooks popularBooks = new MostPopularBooks(bookList1);
         popularBooks.getPopularBooks().stream().forEach(bk ->{
-            System.out.println(bk.toString());
+            System.out.println(msg + bk.toString());
         });
-
+        // checked exception
         try {
             User use = new Student("A001234", "abc123@gmail.com", "student", 123, null, true);
             boolean status =  use.validateIdCard("C:\\Users\\Thanuja\\Downloads\\idcard.txt");
@@ -39,6 +40,7 @@ public class Main {
             // LVTI
             var message = use.donateToLibrary();
             System.out.println(message);//why are we printing donateToLibrary
+            printFamousAuthors();
         }
         catch (Exception ex){
             System.out.println("Failed to create user: "+ ex.getMessage());
@@ -63,10 +65,26 @@ public class Main {
         bookList1.addAll(Arrays.asList(books));
         ct = new Catalogue(bookList1);
     }
-    // Method Reference
+    // Method Reference while using isAvailable and print new line
     public static void printAllAvailableBooks(){
         System.out.println("Available Books: ");
         ct.getCollection().stream().filter(Book::isAvailable).forEach(System.out::println);
         System.out.println(" ------------------------------  ");
+    }
+
+    // Use of arrays and string builder
+    public static void printFamousAuthors(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("Jane-Austen ");
+        sb.append("William-Shakespeare ");
+        sb.append("Mark-Twain ");
+        sb.append("Leo-Tolstoy ");
+        sb.append("J.K.Rowling ");
+        String [] authors = sb.toString().split(" ");
+        System.out.println("Famous Authors: ");
+        for(int p=0; p<authors.length; p++){
+            System.out.println(authors[p]);
+        }
+
     }
 }

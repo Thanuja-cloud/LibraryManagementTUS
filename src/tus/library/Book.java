@@ -5,6 +5,7 @@ import tus.library.Interfaces.Payment;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
+// Use of enums
 public class Book implements Payment {
     enum BookDepartment {
         CSE, ECE, EEE, MECHANICAL, CIVIL, AIML, DATASCIENCE;
